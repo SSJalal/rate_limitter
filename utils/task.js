@@ -1,28 +1,18 @@
-const { requestsArr, requestsObj, maxTime } = require('../data/dataFile')
-
-function shiftTasks(index) {
-    for(let i = index + 1; i < requestsArr.length; i++) {
-        requestsArr[i - 1] = requestsArr[i]
-    }
-    requestsArr.pop()
-    console.log('User left: ', requestsArr);
-}
+const { requestsObj, maxTime } = require('../data/dataFile')
 
 function updateTask(userID) {
     requestsObj[userID].counter--
     console.log(`Task completed: ${userID} count: ${requestsObj[userID].counter}`);
     if(requestsObj[userID].counter == 0) {
         delete requestsObj[userID]
-        shiftTasks(requestsArr.indexOf(userID))
     }
 }
 
 exports.createTask = (userID) => {
-    if(requestsArr.includes(userID)) {
+    if(Object.keys(requestsObj).includes(userID)) {
         requestsObj[userID].counter++
     }
     else {
-        requestsArr.push(userID)
         requestsObj[userID] = {
             counter: 1
         }
