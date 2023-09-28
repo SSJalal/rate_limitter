@@ -3,3 +3,5 @@
     * run - 'npm start'
 
 - To change configuration update: './date/dataFile.js'
+    * limit
+    * maxTime
